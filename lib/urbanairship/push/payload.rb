@@ -7,7 +7,7 @@ module Urbanairship
 
       # Notification Object for a Push Payload
       def notification(alert: nil, ios: nil, android: nil, amazon: nil,
-                       wns: nil, actions: nil, interactive: nil)
+                       wns: nil, actions: nil, interactive: nil, title: nil)
         payload = compact_helper({
           alert: alert,
           actions: actions,
@@ -15,7 +15,8 @@ module Urbanairship
           android: android,
           amazon: amazon,
           wns: wns,
-          interactive: interactive
+          interactive: interactive,
+          title: title
         })
         fail ArgumentError, 'Notification body is empty' if payload.empty?
         payload
@@ -23,7 +24,7 @@ module Urbanairship
 
       # iOS specific portion of Push Notification Object
       def ios(alert: nil, badge: nil, sound: nil, extra: nil, expiry: nil,
-              category: nil, interactive: nil, content_available: nil, priority: nil)
+              category: nil, interactive: nil, content_available: nil, priority: nil, title: nil)
         compact_helper({
           alert: alert,
           badge: badge,
@@ -33,7 +34,8 @@ module Urbanairship
           category: category,
           interactive: interactive,
           'content-available' => content_available,
-          priority: priority
+          priority: priority,
+          title: title
         })
       end
 
@@ -53,14 +55,15 @@ module Urbanairship
 
       # Android specific portion of Push Notification Object
       def android(alert: nil, collapse_key: nil, time_to_live: nil,
-                  extra: nil, delay_while_idle: nil, interactive: nil)
+                  extra: nil, delay_while_idle: nil, interactive: nil, title: nil)
         compact_helper({
           alert: alert,
           collapse_key: collapse_key,
           time_to_live: time_to_live,
           extra: extra,
           delay_while_idle: delay_while_idle,
-          interactive: interactive
+          interactive: interactive,
+          title: title
         })
       end
 
