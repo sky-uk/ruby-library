@@ -261,6 +261,13 @@ module Urbanairship
           interactive: interactive,
         })
       end
+
+      # campaigns category
+      def campaigns(categories: nil)
+        compact_helper({
+          categories: categories
+        })
+      end
     end
   end
 end
