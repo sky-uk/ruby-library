@@ -139,6 +139,13 @@ module Urbanairship
           app_defined: app_defined
         })
       end
+
+      # campaigns category
+      def campaigns(categories: nil)
+        compact_helper({
+          categories: categories
+        })
+      end
     end
   end
 end

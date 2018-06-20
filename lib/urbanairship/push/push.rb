@@ -9,7 +9,7 @@ module Urbanairship
     # A Push Notification.
     class Push
       attr_writer :client, :audience, :notification, :options,
-                  :device_types, :message, :in_app
+                  :device_types, :message, :in_app, :campaigns
       attr_reader :device_types, :audience
       include Urbanairship::Common
       include Urbanairship::Loggable
@@ -25,6 +25,7 @@ module Urbanairship
         compact_helper({
           audience: @audience,
           notification: @notification,
+          campaigns: @campaigns,
           options: @options,
           device_types: @device_types,
           message: @message,
@@ -109,6 +110,7 @@ module Urbanairship
         p = Push.new(client)
         p.audience = payload['body']['push']['audience']
         p.notification = payload['body']['push']['notification']
+        p.campaigns = payload['body']['push']['campaigns']
         p.device_types = payload['body']['push']['device_types']
         p.message = payload['body']['push']['message']
         p.options = payload['body']['push']['options']
